@@ -24,6 +24,8 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
 .final-message { font-size:1.5rem; margin-top:30px; }
 .future-call { font-size:2.5rem; color:var(--md-success); }
 .rainbow-text { font-size:2.5rem; background:linear-gradient(to right,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#8b00ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; }
+
+/* --- SEZIONE CONTROLLI MODIFICATA PER ZOOM E SOVRAPPOSIZIONI --- */
 #secret-bg-controls,
 #music-controls {
   position: fixed;
@@ -37,12 +39,32 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
   transition: opacity .5s ease-in-out;
   background: rgba(255,255,255,0.14);
   backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px); /* Aggiunto per stabilità su Safari */
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.18);}
-#secret-bg-controls { bottom: 8px; }
-#music-controls { bottom: 80px; flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 24px); }
+  border: 1px solid rgba(255,255,255,0.18);
+  
+  /* Gestione Zoom & Conflitti: Minimizza l'area invisibile che blocca i clic */
+  width: max-content; 
+  max-width: 95vw;
+  box-sizing: border-box;
+}
+
+/* Posizionamento gerarchico anti-zoom usando clamp e rem */
+#secret-bg-controls { 
+  bottom: clamp(8px, 1.5vh, 16px); 
+}
+
+#music-controls { 
+  bottom: clamp(55px, calc(1.5vh + 3.2rem), 80px);
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
 #secret-bg-controls:hover,
-#music-controls:hover { opacity: 1; }
+#music-controls:hover { 
+  opacity: 1; 
+}
+
 .secret-btn,
 .music-btn,
 .track-btn {
@@ -54,16 +76,20 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
   font-size: .78rem;
   cursor: pointer;
   font-family: monospace;
-  white-space: nowrap;}
+  white-space: nowrap;
+}
+
 .secret-btn:hover,
 .music-btn:hover,
 .track-btn:hover { background: var(--md-primary); }
 .track-btn.is-active { background: var(--md-success); border-color: var(--md-success); }
 .track-buttons { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+
 #lyrics-panel {
   position: fixed;
   left: 50%;
-  bottom: 98px;
+  /* Mantiene il pannello dinamicamente sempre sopra i music-controls */
+  bottom: clamp(105px, calc(1.5vh + 6.5rem), 140px);
   transform: translateX(-50%);
   width: min(760px, calc(100vw - 24px));
   max-height: 62vh;
@@ -74,47 +100,47 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
   border-radius: 16px;
   padding: 14px 18px;
   backdrop-filter: blur(6px);
-  box-shadow: 0 10px 30px rgba(0,0,0,.24);}
+  box-shadow: 0 10px 30px rgba(0,0,0,.24);
+}
+
 .lyrics-title { font-weight: 700; margin-bottom: 8px; color: #fff59d; }
 .lyrics-text { font-size: 1.5rem; line-height: 1.6; white-space: pre-wrap; }
 .lyrics-line { opacity: .55; }
 .lyrics-line.is-current { opacity: 1; color: #fff59d; font-weight: 700;font-size: 3rem; }
+
+/* MEDIA QUERY OTTIMIZZATA */
 @media (max-width:768px){
   .options-grid{grid-template-columns:1fr}
   h1{font-size:2rem}
   h2{font-size:1.4rem}
   .option-btn{font-size:1.15rem;padding:16px}
   .btn-action{width:100%;padding:16px 20px;font-size:1.2rem}
-  #secret-bg-controls{bottom:102px}
-  #music-controls{bottom:8px}
-  #lyrics-panel{bottom:144px;max-height:28vh}}
+  
+  /* Allineati alla tua regola: Secret sotto, Music in mezzo, Lyrics in alto */
+  #secret-bg-controls { bottom: 12px; }
+  #music-controls { bottom: 65px; }
+  #lyrics-panel { bottom: 145px; max-height: 28vh; }
+}
+
 /* 1. Definisci lo stile base del logo affinché sia posizionabile e animabile */
 .persistent-logo {
-    position: static; /* Posizione assoluta per poterlo spostare */
-    top: 15%; /* Partenza più centrale verticalmente o dove preferisci */
+    position: static; 
+    top: 15%; 
     left: 50%;
     max-width: 180px;
     z-index: 20;
-    transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-  
-/* Animazione fluida con un leggero "molleggio" finale */
+    /* Animazione fluida con un leggero "molleggio" finale */
     transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  /* QUESTO ATTIVA L'ANIMAZIONE */
-  /* transition: proprietà tempo tipo-di-movimento; */
-  /* transition: all 0.5s ease-in-out;  */
 }
 
 /* 2. Definisci la posizione finale quando la classe viene aggiunta dal JS */
 .persistent-logo.logo-top-right {
-  /* Sovrascriviamo le posizioni iniziali */
-  bottom: auto;      /* Annulliamo il bottom precedente */
-  left: auto;        /* Annulliamo il left precedente */
+  bottom: auto;      
+  left: auto;        
   position:fixed;
-  right: 4vh;       /* Nuova posizione: in alto */
-  top: 2vh;         /* Nuova posizione: a destra */
+  right: 4vh;       
+  top: 2vh;         
   transition: all 1s var(--motion-ease);
-  left: calc(100% - 4vh); /* Calcola la posizione destra mantenendo left per la transition */
-  transform: translateX(-100%) scale(0.8); /* Si rimpicciolisce un po' mentre si sposta */
-  
+  left: calc(100% - 4vh); 
+  transform: translateX(-100%) scale(0.8); 
 }
