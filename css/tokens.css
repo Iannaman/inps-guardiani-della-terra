@@ -1,0 +1,13 @@
+:root {
+  --md-primary: #2f6dd5;
+  --md-primary-dark: #002460;
+  --md-success: #00c853;
+  --md-danger: #d50000;
+  --md-accent: #00e5ff;
+  --md-text-primary: #212121;
+  --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-lg: 28px;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,0.2);
+  --shadow-btn: 0 6px 0 #1c4b9e;
+  --container-max-width: 860px;
+}

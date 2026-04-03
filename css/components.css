@@ -1,0 +1,120 @@
+h1 { font-size: 2.5rem; color: var(--md-primary-dark); margin: 0 0 20px; }
+h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-height: 1.4; min-height: 3rem; }
+.lead-text { font-size: 1.5rem; margin-bottom: 30px; }
+.credits-box { margin-top: 40px; font-size: .9rem; color: #757575; border-top: 1px solid #eee; padding-top: 15px; }
+.credits-version { font-size: .8rem; }
+#health-container { width:100%; height:20px; background:#e0e0e0; border-radius:10px; margin-bottom:25px; border:2px solid var(--md-primary-dark); overflow:hidden; }
+#health-bar { width:0%; height:100%; background:linear-gradient(90deg,var(--md-danger),var(--md-accent),var(--md-success)); transition:width .6s var(--motion-ease); }
+#info-header { font-weight:bold; color:var(--md-primary); margin-bottom:10px; font-size:1.2rem; }
+.options-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.option-btn { background:#fff; border:3px solid var(--md-primary-dark); padding:20px; font-size:1.4rem; font-weight:bold; color:var(--md-primary-dark); border-radius:16px; cursor:pointer; transition:all .2s; }
+.option-btn:hover { background:#f0f7ff; transform:translateY(-3px); box-shadow:0 6px 12px rgba(0,0,0,.1); }
+.option-btn small { font-weight:normal; font-size:1rem; color:#555; }
+.correct { background-color:var(--md-success)!important; color:#fff!important; border-color:var(--md-success)!important; }
+.wrong { background-color:var(--md-danger)!important; color:#fff!important; border-color:var(--md-danger)!important; }
+#explanation { display:none; margin-top:30px; padding:25px; background:#f5f5f5; border-radius:16px; border-left:8px solid var(--md-primary); text-align:left; }
+#explanation-text { margin:0; font-size:1.3rem; }
+.goal-tag { background:var(--md-accent); padding:8px 16px; border-radius:8px; font-weight:bold; display:inline-block; margin-bottom:15px; color:var(--md-primary-dark); }
+.btn-action { margin-top:30px; padding:18px 45px; font-size:1.5rem; background:var(--md-primary); color:#fff; border:none; border-radius:50px; cursor:pointer; font-weight:bold; box-shadow:var(--shadow-btn); }
+.btn-action:active { transform:translateY(4px); box-shadow:0 2px 0 #1c4b9e; }
+#wrong-recap { margin-top:35px; background:#fff; border-radius:16px; padding:25px; text-align:left; border:3px solid var(--md-danger); display:none; }
+.recap-item { margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px; }
+.final-title { font-size:3rem; }
+.final-result { font-size:2.2rem; font-weight:bold; color:var(--md-primary); margin-bottom:20px; }
+.final-message { font-size:1.5rem; margin-top:30px; }
+.future-call { font-size:2.5rem; color:var(--md-success); }
+.rainbow-text { font-size:2.5rem; background:linear-gradient(to right,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#8b00ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; }
+#secret-bg-controls,
+#music-controls {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 8px 10px;
+  opacity: 0;
+  z-index: 9999;
+  transition: opacity .5s ease-in-out;
+  background: rgba(255,255,255,0.14);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);}
+#secret-bg-controls { bottom: 8px; }
+#music-controls { bottom: 80px; flex-wrap: wrap; justify-content: center; max-width: calc(100vw - 24px); }
+#secret-bg-controls:hover,
+#music-controls:hover { opacity: 1; }
+.secret-btn,
+.music-btn,
+.track-btn {
+  background: rgba(33,33,33,.72);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: .78rem;
+  cursor: pointer;
+  font-family: monospace;
+  white-space: nowrap;}
+.secret-btn:hover,
+.music-btn:hover,
+.track-btn:hover { background: var(--md-primary); }
+.track-btn.is-active { background: var(--md-success); border-color: var(--md-success); }
+.track-buttons { display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; }
+#lyrics-panel {
+  position: fixed;
+  left: 50%;
+  bottom: 98px;
+  transform: translateX(-50%);
+  width: min(760px, calc(100vw - 24px));
+  max-height: 62vh;
+  overflow: auto;
+  z-index: 9997;
+  background: rgba(0,0,0,.58);
+  color: #fff;
+  border-radius: 16px;
+  padding: 14px 18px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.24);}
+.lyrics-title { font-weight: 700; margin-bottom: 8px; color: #fff59d; }
+.lyrics-text { font-size: 1.5rem; line-height: 1.6; white-space: pre-wrap; }
+.lyrics-line { opacity: .55; }
+.lyrics-line.is-current { opacity: 1; color: #fff59d; font-weight: 700;font-size: 3rem; }
+@media (max-width:768px){
+  .options-grid{grid-template-columns:1fr}
+  h1{font-size:2rem}
+  h2{font-size:1.4rem}
+  .option-btn{font-size:1.15rem;padding:16px}
+  .btn-action{width:100%;padding:16px 20px;font-size:1.2rem}
+  #secret-bg-controls{bottom:102px}
+  #music-controls{bottom:8px}
+  #lyrics-panel{bottom:144px;max-height:28vh}}
+/* 1. Definisci lo stile base del logo affinché sia posizionabile e animabile */
+.persistent-logo {
+    position: static; /* Posizione assoluta per poterlo spostare */
+    top: 15%; /* Partenza più centrale verticalmente o dove preferisci */
+    left: 50%;
+    max-width: 180px;
+    z-index: 20;
+    transition: all 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  
+/* Animazione fluida con un leggero "molleggio" finale */
+    transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* QUESTO ATTIVA L'ANIMAZIONE */
+  /* transition: proprietà tempo tipo-di-movimento; */
+  /* transition: all 0.5s ease-in-out;  */
+}
+
+/* 2. Definisci la posizione finale quando la classe viene aggiunta dal JS */
+.persistent-logo.logo-top-right {
+  /* Sovrascriviamo le posizioni iniziali */
+  bottom: auto;      /* Annulliamo il bottom precedente */
+  left: auto;        /* Annulliamo il left precedente */
+  position:fixed;
+  right: 4vh;       /* Nuova posizione: in alto */
+  top: 2vh;         /* Nuova posizione: a destra */
+  transition: all 1s var(--motion-ease);
+  left: calc(100% - 4vh); /* Calcola la posizione destra mantenendo left per la transition */
+  transform: translateX(-100%) scale(0.8); /* Si rimpicciolisce un po' mentre si sposta */
+  
+}
