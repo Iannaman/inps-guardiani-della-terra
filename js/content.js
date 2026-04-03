@@ -109,12 +109,12 @@ window.GDTConfig = {
         },
         {
           id: 'canzone-2',
-          title: 'Supereroi della Terra - INPS',
-          file: './assets/audio/Supereroi della Terra - INPS-lento.mp3',
+          title: 'Supereroi della Terra - INPS - Corale',
+          file: './assets/audio/Supereroi della Terra - INPS-corale.mp3',
           lyrics: [
               { "time": 0, "text": "Siamo pronti? Tre, due, uno... Superpoteri attivati!" },
               { "time": 5, "text": "Via!" },
-              { "time": 5, "text": "Via!" },
+              { "time": 6, "text": "Via!" },
               { "time": 7, "text": "Via!" },
               { "time": 16, "text": "Mettiamo il mantello, scendiamo in cortile, salvare il pianeta è il nostro super stile" },
               { "time": 22, "text": "Siamo piccoli, sì ma con un grande potere, c'è un mondo da amare c'è da fare e vedere" },
@@ -145,6 +145,40 @@ window.GDTConfig = {
               { "time": 170, "text": "Guardiani! Sì!" },
               { "time": 173, "text": "INPS! Sì!" },
               { "time": 176, "text": "Noi siamo il futuro! Evviva!" }
+            ]
+      },
+      
+        {
+          id: 'canzone-3',
+          title: 'Supereroi della Terra - INPS - Singolo',
+          file: './assets/audio/Supereroi della Terra - INPS-voce bianca.mp3',
+          lyrics: [
+              { "time": 0, "text": "Siamo pronti? Tre, due, uno... Superpoteri attivati!" },
+              { "time": 5, "text": "Via!" },
+              { "time": 5, "text": "Via!" },
+              { "time": 7, "text": "Via!" },
+              { "time": 10, "text": "Mettiamo il mantello, scendiamo in cortile, salvare il pianeta è il nostro super stile" },
+              { "time": 15, "text": "Siamo piccoli, sì ma con un grande potere, c'è un mondo da amare c'è da fare e vedere" },
+              { "time": 21, "text": "L'acqua preziosa, noi proteggiamo, in sella alla bici più veloci andiamo!" },
+              { "time": 27, "text": "Forza guardiani!" },
+              { "time": 29, "text": "Rifiuti nel cesto, la magia si accende, la nostra energia tutto il buio sorprende" },
+              { "time": 40, "text": "Siamo i supereroi della Terra!" },
+              { "time": 47, "text": "La nostra magia ogni inquinamento azzererà" },
+              { "time": 52, "text": "Con l'INPS al nostro fianco, una base spaziale, l'Istituto Nazionale Previdenza Sociale" },
+              { "time": 58, "text": "Per un futuro verde, un mondo più sicuro... insieme all'INPS" },
+              { "time": 65, "text": "NOI SIAMO IL FUTURO!" },
+              { "time": 69, "text": "Un albero nuovo è uno scudo gigante, contro lo smog siamo un team fulminante!" },
+              { "time": 75, "text": "Sconfiggiamo lo spreco, difendiamo il mare, nessun compagno lasciamo indietro a guardare!" },
+              { "time": 84, "text": "Menti brillanti, natura che splende, la nostra energia tutto il mondo difende!" },
+              { "time": 93, "text": "Siamo i supereroi della Terra!" },
+              { "time": 100, "text": "La nostra magia ogni inquinamento azzererà!" },
+              { "time": 105, "text": "Con l'INPS al nostro fianco una base spaziale, l'Istituto Nazionale Previdenza Sociale!" },
+              { "time": 111, "text": "Per un futuro verde, un mondo più sicuro, insieme all'INPS" },
+              { "time": 118, "text": "NOI SIAMO IL FUTURO!" },
+              { "time": 121, "text": "Supereroi! (Sì!) Guardiani! (Sì!) INPS! (Sì!) Noi siamo il futuro!" },
+              { "time": 133, "text": "Evviva!" },             
+	      { "time": 141, "text": "Instrumental Music" }
+
             ]
       }
     ]
