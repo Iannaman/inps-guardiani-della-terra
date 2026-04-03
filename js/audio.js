@@ -66,6 +66,7 @@
     if(!track){
       title.textContent = 'Lyrics';
       renderLyricsPlaceholder('Seleziona una traccia per visualizzare il testo.');
+      textBox.dataset.trackId = '';
       return;
     }
 
@@ -73,24 +74,91 @@
 
     if(!track.lyrics || !track.lyrics.length){
       renderLyricsPlaceholder('Per questa traccia non sono state configurate lyrics.');
+      textBox.dataset.trackId = '';
       return;
     }
 
     const currentTime = bgAudio ? bgAudio.currentTime : 0;
-    const html = track.lyrics.map((line, index) => {
-      const next = track.lyrics[index + 1];
-      const isCurrent = currentTime >= line.time && (!next || currentTime < next.time);
-      return `<div class="lyrics-line${isCurrent ? ' is-current' : ''}">${line.text}</div>`;
-    }).join('');
+    
+    // 1. Trova l'indice della frase corrente
+    let newActiveIndex = -1;
+    for(let i = 0; i < track.lyrics.length; i++){
+      const line = track.lyrics[i];
+      const next = track.lyrics[i + 1];
+      if(currentTime >= line.time && (!next || currentTime < next.time)) {
+        newActiveIndex = i;
+        break;
+      }
+    }
 
-    textBox.innerHTML = html;
+    // 2. Se è una nuova traccia, genera l'HTML
+    if (textBox.dataset.trackId !== currentTrackId) {
+      const html = track.lyrics.map((line, index) => {
+        const isCurrent = (index === newActiveIndex);
+        return `<div class="lyrics-line${isCurrent ? ' is-current' : ''}">${line.text}</div>`;
+      }).join('');
+
+      textBox.innerHTML = html;
+      textBox.dataset.trackId = currentTrackId;
+      
+      // Auto-scroll iniziale se la canzone è già iniziata
+      const currentLine = textBox.querySelector('.is-current');
+      if (currentLine) {
+         currentLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    } else {
+      // 3. Ottimizzazione: la traccia è la stessa, aggiorniamo solo la classe per permettere l'animazione
+      const lines = textBox.querySelectorAll('.lyrics-line');
+      const currentActiveNode = textBox.querySelector('.is-current');
+      const targetActiveNode = newActiveIndex !== -1 ? lines[newActiveIndex] : null;
+
+      // Se la riga attiva è cambiata rispetto al frame precedente
+      if (currentActiveNode !== targetActiveNode) {
+        if (currentActiveNode) currentActiveNode.classList.remove('is-current');
+        
+        if (targetActiveNode) {
+          targetActiveNode.classList.add('is-current');
+          // --- EFFETTUA L'AUTO SCROLL ---
+          targetActiveNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    }
   }
 
-  function setLyricsVisible(visible){
+function setLyricsVisible(visible){
     lyricsVisible = visible;
     const panel = document.getElementById('lyrics-panel');
     const btn = document.getElementById('lyrics-toggle-btn');
+    const logo = document.querySelector('.persistent-logo'); 
+
     if(btn) btn.textContent = visible ? '📝 Lyrics ON' : '📝 Lyrics OFF';
+    
+    // --- GESTIONE LOGO KARAOKE E RITORNO ---
+    if(logo) {
+      // Pulisce tutte le animazioni precedenti prima di applicare la nuova
+      logo.classList.remove('karaoke-entrance', 'karaoke-live', 'logo-return');
+
+      if(visible) {
+        // Entrata scenografica del logo Karaoke
+        logo.src = './assets/images/Logo Inps - Guardiani della terra - Karaoke.png'; 
+        logo.classList.add('karaoke-entrance');
+        
+        // Passaggio alla fase "Live" dopo l'animazione di entrata
+        setTimeout(() => {
+          if (lyricsVisible) {
+              logo.classList.remove('karaoke-entrance');
+              logo.classList.add('karaoke-live');
+          }
+        }, 600);
+
+      } else {
+        // Ritorno animato al logo Inps normale
+        logo.src = './assets/images/Inps-logo.png';
+        logo.classList.add('logo-return');
+      }
+    }
+    // --- FINE GESTIONE LOGO ---
+
     if(!panel) return;
     if(visible){
       panel.classList.remove('hidden');

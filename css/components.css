@@ -138,9 +138,8 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
   bottom: auto;      
   left: auto;        
   position:fixed;
-  right: 4vh;       
+  right: 2vh;       
   top: 2vh;         
   transition: all 1s var(--motion-ease);
-  left: calc(100% - 4vh); 
-  transform: translateX(-100%) scale(0.8); 
+
 }

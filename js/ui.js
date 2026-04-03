@@ -2,7 +2,15 @@
   const questions = window.GDTContent.questions;
   const elements = { startScreen: document.getElementById('start-screen'), quizScreen: document.getElementById('quiz-screen'), finalScreen: document.getElementById('final-screen'), healthBar: document.getElementById('health-bar'), infoHeader: document.getElementById('info-header'), questionText: document.getElementById('question-text'), optionsContainer: document.getElementById('options-container'), explanation: document.getElementById('explanation'), goalTag: document.getElementById('goal-tag'), explanationText: document.getElementById('explanation-text'), finalResult: document.getElementById('final-result'), wrongRecap: document.getElementById('wrong-recap') };
   function showStartScreen(){ elements.startScreen.classList.remove('hidden'); elements.quizScreen.classList.add('hidden'); elements.finalScreen.classList.add('hidden'); }
-  function showQuizScreen(){ elements.startScreen.classList.add('hidden'); elements.quizScreen.classList.remove('hidden'); elements.finalScreen.classList.add('hidden');toggleLogoPosition();   }
+  function showQuizScreen(){ 
+    elements.startScreen.classList.add('hidden');
+    elements.quizScreen.classList.remove('hidden');
+    elements.finalScreen.classList.add('hidden');
+    toggleLogoPosition();
+    
+    // Attiva l'animazione di movimento e salita del container
+    document.getElementById('game-container').classList.add('mission-active');
+  }
   function showFinalScreen(){ elements.startScreen.classList.add('hidden'); elements.quizScreen.classList.add('hidden'); elements.finalScreen.classList.remove('hidden'); toggleLogoPosition();  }
   function resetUI(){ elements.healthBar.style.width='0%'; elements.explanation.style.display='none'; elements.wrongRecap.style.display='none'; elements.wrongRecap.innerHTML=''; elements.optionsContainer.innerHTML=''; }
   function updateQuestionUI(question,currentIndex){ elements.infoHeader.innerText=`TAPPA ${currentIndex+1} DI ${questions.length}`; elements.questionText.innerText=question.q; elements.explanation.style.display='none'; elements.optionsContainer.innerHTML=''; }
