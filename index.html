@@ -88,6 +88,18 @@
   
 
   <div class="author-badge">Sviluppato dall'Area Attuazione delle Politiche di Sostenibilità - Direzione Centrale Organizzazione - INPS</div>
+//ToolTip per guidare i giocatori a scoprire i controlli segreti di sfondo e musica, posizionato in basso al centro dello schermo, con freccia che punta verso i bottoni. Scompare dopo 10 secondi o al primo click su un bottone.
+  <div id="starting-guide-tooltip" class="guide-tooltip hidden">
+    <div class="guide-content">
+      <p>👇 <b>Scorri qui in basso!</b></p>
+      <ul>
+        <li>🎨 <b>Sfondi:</b> Cambia l'ambientazione</li>
+        <li>🎤 <b>Karaoke:</b> Avvia la musica e i testi</li>
+        <li>⚠️🔎<b>ZOOM:</b> Impostare lo zoom utilizzando il tasto Ctrl e la rotella del mouse per non sovrapporre i controlli </li>
+      </ul>
+    </div>
+    <div class="guide-arrow"></div>
+  </div>
 
   <script src="./js/content.js"></script>
   <script src="./js/game-state.js"></script>
@@ -96,5 +108,7 @@
   <script src="./js/ui.js"></script>
   <script src="./js/quiz-engine.js"></script>
   <script src="./js/app.js"></script>
+
+
 </body>
 </html>
