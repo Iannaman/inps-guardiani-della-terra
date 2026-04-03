@@ -91,7 +91,7 @@ h2 { font-size: 1.8rem; margin: 0 0 30px; color: var(--md-text-primary); line-he
   /* Mantiene il pannello dinamicamente sempre sopra i music-controls */
   bottom: clamp(105px, calc(1.5vh + 6.5rem), 140px);
   transform: translateX(-50%);
-  width: min(760px, calc(100vw - 24px));
+  width: min(1080px, calc(100vw - 24px));
   max-height: 62vh;
   overflow: auto;
   z-index: 9997;
